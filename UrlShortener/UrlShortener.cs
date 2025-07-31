@@ -40,5 +40,19 @@
 
             return longUrl;
         }
+
+        public string SaveUrlMappingToCache(string longUrl)
+        {
+            var shortUrl = GenerateShortUrl();
+            _urlMapDb.SaveUrlMapping(shortUrl, longUrl);
+
+            return shortUrl;
+        }
+
+        private string GenerateShortUrl()
+        {
+            var hash = Guid.NewGuid().ToString()[..8];
+            return $"sho.rt/{hash}";
+        }
     }
 }
