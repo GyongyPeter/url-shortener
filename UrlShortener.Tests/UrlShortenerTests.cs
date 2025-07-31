@@ -12,31 +12,31 @@ namespace UrlShortener.Tests
         }
 
         [Fact]
-        public void GetShortUrlByNormal_ShouldReturnShortUrl()
+        public void GetShortUrlByLong_ShouldReturnShortUrl()
         {
             // Arrange
-            var normalUrl = "https://abacusmedicinegroup.com/";
-            var generatedShortUrl = _urlShortener.SaveUrlMappingToCache(normalUrl);
+            var longUrl = "https://abacusmedicinegroup.com/";
+            var generatedShortUrl = _urlShortener.SaveUrlMappingToCache(longUrl);
 
             // Act
-            var receivedShortUrl = _urlShortener.GetShortUrlByNormal(normalUrl);
+            var receivedShortUrl = _urlShortener.GetShortUrlByLong(longUrl);
 
             // Assert
             Assert.Equal(generatedShortUrl, receivedShortUrl);
         }
 
         [Fact]
-        public void GetNormalUrlByShort_ShouldReturnOriginalUrl()
+        public void GetLongUrlByShort_ShouldReturnLongUrl()
         {
             // Arrange
-            var normalUrl = "https://abacusmedicinegroup.com/";
-            var generatedShortUrl = _urlShortener.SaveUrlMappingToCache(normalUrl);
+            var longUrl = "https://abacusmedicinegroup.com/";
+            var generatedShortUrl = _urlShortener.SaveUrlMappingToCache(longUrl);
 
             // Act
-            var receivedNormalUrl = _urlShortener.GetNormalUrlByShort(generatedShortUrl);
+            var receivedLongUrl = _urlShortener.GetLongUrlByShort(generatedShortUrl);
 
             // Assert
-            Assert.Equal(normalUrl, receivedNormalUrl);
+            Assert.Equal(longUrl, receivedLongUrl);
         }
     }
 }
