@@ -54,6 +54,17 @@ namespace UrlShortener.Tests
         }
 
         [Fact]
+        public void SaveUrlMappingToCache_LongUrlWithoutHttp_ShouldThrow()
+        {
+            // Arrange
+            var longUrl = "abacusmedicinegroup.com";
+
+            // Act & Assert
+            Assert.Throws<FormatException>(() =>
+                _urlShortener.SaveUrlMappingToCache(longUrl));
+        }
+
+        [Fact]
         public void GetShortUrlByLong_WithUnknownUrl_ShouldThrow()
         {
             // Arrange

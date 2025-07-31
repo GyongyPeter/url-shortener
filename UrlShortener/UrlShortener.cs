@@ -48,6 +48,11 @@
                 return existingShortUrl;
             }
 
+            if (!longUrl.StartsWith("http://") && !longUrl.StartsWith("https://"))
+            {
+                throw new FormatException("Url has to start with 'http://' or 'https://'");
+            }
+
             var shortUrl = GenerateShortUrl();
             _urlMapDb.SaveUrlMapping(shortUrl, longUrl);
 
