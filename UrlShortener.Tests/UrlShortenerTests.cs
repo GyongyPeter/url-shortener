@@ -40,6 +40,20 @@ namespace UrlShortener.Tests
         }
 
         [Fact]
+        public void SaveUrlMappingToCache_ShouldNotAddNewShortUrlIfLongExists()
+        {
+            // Arrange
+            var longUrl = "https://abacusmedicinegroup.com/";
+            var generatedShortUrl1 = _urlShortener.SaveUrlMappingToCache(longUrl);
+
+            // Act
+            var generatedShortUrl2 = _urlShortener.SaveUrlMappingToCache(longUrl);
+
+            // Assert
+            Assert.Equal(generatedShortUrl1, generatedShortUrl2);
+        }
+
+        [Fact]
         public void GetShortUrlByLong_WithUnknownUrl_ShouldThrow()
         {
             // Arrange

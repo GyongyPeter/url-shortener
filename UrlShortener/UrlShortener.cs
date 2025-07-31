@@ -43,6 +43,11 @@
 
         public string SaveUrlMappingToCache(string longUrl)
         {
+            if (_urlMapDb.GetShortUrl(longUrl) is { } existingShortUrl)
+            {
+                return existingShortUrl;
+            }
+
             var shortUrl = GenerateShortUrl();
             _urlMapDb.SaveUrlMapping(shortUrl, longUrl);
 
