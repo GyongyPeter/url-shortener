@@ -38,5 +38,47 @@ namespace UrlShortener.Tests
             // Assert
             Assert.Equal(longUrl, receivedLongUrl);
         }
+
+        [Fact]
+        public void GetShortUrlByLong_WithUnknownUrl_ShouldThrow()
+        {
+            // Arrange
+            var unknownUrl = "https://nonexistent.com/";
+
+            // Act & Assert
+            Assert.Throws<KeyNotFoundException>(() =>
+                _urlShortener.GetShortUrlByLong(unknownUrl));
+        }
+
+        [Fact]
+        public void GetLongUrlByShort_WithUnknownShortUrl_ShouldThrow()
+        {
+            // Arrange
+            var unknownShortUrl = "sho.rt/12345678";
+
+            // Act & Assert
+            Assert.Throws<KeyNotFoundException>(() =>
+                _urlShortener.GetLongUrlByShort(unknownShortUrl));
+        }
+
+        [Theory]
+        [InlineData(null)]
+        [InlineData("")]
+        [InlineData(" ")]
+        public void GetShortUrlByLong_WithInvalidInput_ShouldThrow(string input)
+        {
+            Assert.Throws<ArgumentException>(() =>
+                _urlShortener.GetShortUrlByLong(input));
+        }
+
+        [Theory]
+        [InlineData(null)]
+        [InlineData("")]
+        [InlineData(" ")]
+        public void GetLongUrlByShort_WithInvalidInput_ShouldThrow(string input)
+        {
+            Assert.Throws<ArgumentException>(() =>
+                _urlShortener.GetLongUrlByShort(input));
+        }
     }
 }
