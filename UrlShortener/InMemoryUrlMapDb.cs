@@ -2,8 +2,8 @@
 {
     public class InMemoryUrlMapDb : IUrlMapDb
     {
-        private readonly Dictionary<string, string> _shortToLong = new();
-        private readonly Dictionary<string, string> _longToShort = new();
+        private readonly Dictionary<string, string> _shortToLong = [];
+        private readonly Dictionary<string, string> _longToShort = [];
 
         public string GetLongUrl(string shortUrl)
         {
